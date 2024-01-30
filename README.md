@@ -1,4 +1,5 @@
 Hola!
+
 En este proyecto se realizó un juego para niños usando la libreria PyGame de Python.
 En este sencillo juego tendrás que ir moviendo el jugador (Pinguino) con las teclas de las flechas Izquierda y Derecha para desplazarse horizontalmente. 
 El objetivo es agarrar cada una de nuestras recompensas (Torta) para ir subiendo nuestro puntaje. 
