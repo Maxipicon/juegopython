@@ -1,45 +1,23 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[16]:
-
-
+# Librerías
 import pygame
-
-
-# In[17]:
-
-
 import random
 
-
-# In[18]:
-
-
+# Inicio de pygame
 pygame.init()
 
-
-# In[19]:
-
-
+# Paleta de colores
 Black = (0, 0, 0)
 White = (255,255,255)
 
-
-# In[20]:
-
-
+# Configuración de ventana
 WIDTH = 800
 HEIGHT = 600
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
-pygame.display.set_caption("Mi Juego")
+pygame.display.set_caption("Penguin")
 clock = pygame.time.Clock()
 fondo = pygame.image.load("Paisaje.jpg").convert()
 
-
-# In[21]:
-
-
+# Fuente de texto
 def draw_text(surface, text, size, x, y):
     font = pygame.font.SysFont("serif", size)
     text_surface = font.render(text, True, White)
@@ -47,13 +25,10 @@ def draw_text(surface, text, size, x, y):
     text_rect.midtop = (x, y)
     surface.blit(text_surface, text_rect)
 
-
-# In[22]:
-
-
+# Pantalla de inicio
 def start_screen():
     screen.blit(fondo, [0, 0])
-    draw_text(screen, "Mi juego", 65, WIDTH // 2, HEIGHT // 4)
+    draw_text(screen, "PENGUIN", 65, WIDTH // 2, HEIGHT // 4)
     draw_text(screen, "Press SPACE to continue", 17, WIDTH // 2, HEIGHT * 3/4)
     pygame.display.flip()
     waiting = True
@@ -64,10 +39,7 @@ def start_screen():
             if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
                 waiting = False
 
-
-# In[23]:
-
-
+# Definición de jugador
 class Player (pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -84,10 +56,7 @@ class Player (pygame.sprite.Sprite):
         self.rect.x += self.speed_x
         player.rect.y = 450
 
-
-# In[24]:
-
-
+# Definición de enemigo
 class Enemigo (pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -97,7 +66,6 @@ class Enemigo (pygame.sprite.Sprite):
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
         self.speedy = 3
-        
 
     def update(self):
         self.rect.y += self.speedy
@@ -105,12 +73,8 @@ class Enemigo (pygame.sprite.Sprite):
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-130, -70)
             self.speedy = 3
-            
 
-
-# In[25]:
-
-
+# Definición de recompensa
 class Pastel (pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -120,7 +84,6 @@ class Pastel (pygame.sprite.Sprite):
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
         self.speedy = 3
-        
 
     def update(self):
         self.rect.y += self.speedy
@@ -128,26 +91,14 @@ class Pastel (pygame.sprite.Sprite):
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-130, -70)
             self.speedy = 3
-            
 
-
-# In[26]:
-
-
+# Seteo de aparición de objetos
 ADDENEMY = pygame.USEREVENT + 1
 ADDPASTEL = pygame.USEREVENT + 2
-
-
-# In[27]:
-
-
-pygame.time.set_timer(ADDENEMY, 2000)  
+pygame.time.set_timer(ADDENEMY, 2000)
 pygame.time.set_timer(ADDPASTEL, 2000)
 
-
-# In[28]:
-
-
+# Pantalla de juego finalizado
 def gameover_screen():
     screen.fill(Black)
     draw_text(screen, "GAME OVER", 65, WIDTH // 2, HEIGHT // 4)
@@ -164,15 +115,8 @@ def gameover_screen():
             if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
                 waiting = False
 
-
-# In[29]:
-
-
+# Bucle principal de juego
 game_state = "start_menu"
-
-
-# In[30]:
-
 
 if game_state:
     start_screen()
@@ -258,22 +202,3 @@ while not done:
     clock.tick(60)
 
 pygame.quit()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
